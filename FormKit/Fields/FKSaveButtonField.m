@@ -32,6 +32,7 @@
     
     if (self) {
         self.selectionStyle = UITableViewCellSelectionStyleBlue;
+        [self.textLabel setTextAlignment:NSTextAlignmentCenter];
     }
     
     return self;
