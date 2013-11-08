@@ -259,6 +259,15 @@
                   withField:(UITableViewCell *)field {
     
     id convertedValue = [self convertValueToStringIfNeeded:value attributeMapping:attributeMapping];
+
+    // somehow I have some nil values that breaks the execution
+#warning fix this                                              
+    if (!convertedValue) {                                     
+        convertedValue = @"";                                  
+    }                                                          
+    if ([convertedValue isKindOfClass:[NSNull class]]) {       
+        convertedValue = @"";                                  
+    }                                                          
     
     // Value attribution
     if ([field isKindOfClass:[FKTextField class]]) {
