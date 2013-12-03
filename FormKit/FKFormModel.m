@@ -34,9 +34,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 @interface FKFormModel ()
 
-@property (nonatomic, retain) FKFormMapping *formMapping;
-@property (nonatomic, retain) FKFormMapper *formMapper;
-
 - (void)showTextViewControllerWithAttributeMapping:(FKFormAttributeMapping *)attributeMapping;
 
 - (void)showSelectPickerWithAttributeMapping:(FKFormAttributeMapping *)attributeMapping;

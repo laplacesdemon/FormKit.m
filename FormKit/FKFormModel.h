@@ -21,6 +21,7 @@
 
 @class BKCellMapping;
 @class FKFormMapping;
+@class FKFormMapper;
 @class FKFormAttributeMapping;
 
 @interface FKFormModel : NSObject <UITableViewDataSource, UITableViewDelegate>
@@ -33,6 +34,9 @@
 @property (nonatomic, copy, readonly) FKFormMappingDidChangeValueBlock didChangeValueBlock;
 @property (nonatomic, copy, readonly) FKFormMappingConfigureCellBlock configureCellsBlock;
 @property (nonatomic, retain) UIView *viewOrigin;
+
+@property (nonatomic, retain) FKFormMapping *formMapping;
+@property (nonatomic, retain) FKFormMapper *formMapper;
 
 /**
  A set of attribute names with invalid values.

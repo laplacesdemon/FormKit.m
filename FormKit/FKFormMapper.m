@@ -43,8 +43,6 @@
 
 - (Class)classFromSourcePropertyAtIndexPath:(NSIndexPath *)indexPath keyPath:(NSString *)keyPath;
 
-- (id)valueOfObjectForKeyPath:(NSString *)keyPath;
-
 - (void)splitFieldsIntoSections;
 
 - (NSString *)formattedStringDate:(NSDate *)date usingFormat:(NSString *)dateFormat;

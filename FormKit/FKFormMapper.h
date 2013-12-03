@@ -61,4 +61,16 @@
 
 - (void)validateFieldWithAttribute:(NSString *)attribute;
 
+/**
+ *  A factory method to return the corresponding class for given attribute type.
+ *  This method is an override point to create new form field types.
+ *
+ *  @param attributeMapping
+ *
+ *  @return Class that must be a UITableViewCell
+ */
+- (Class)cellClassWithAttributeMapping:(FKFormAttributeMapping *)attributeMapping;
+
+- (id)valueOfObjectForKeyPath:(NSString *)keyPath;
+
 @end
