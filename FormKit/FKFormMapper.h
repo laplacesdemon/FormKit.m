@@ -20,6 +20,7 @@
 @class FKFormMapping;
 @class FKFormAttributeMapping;
 @class FKFormModel;
+@class FKSimpleField;
 
 @interface FKFormMapper : NSObject <UITextFieldDelegate, UITextViewDelegate> {
     FKFormMapping *_formMapping;
@@ -72,5 +73,27 @@
 - (Class)cellClassWithAttributeMapping:(FKFormAttributeMapping *)attributeMapping;
 
 - (id)valueOfObjectForKeyPath:(NSString *)keyPath;
+
+- (void)mapAttributeMapping:(FKFormAttributeMapping *)attributeMapping
+                      value:(id)value
+                  withField:(UITableViewCell *)field;
+
+/**
+ Converts an object property to a string that can be displayed in a label.
+ */
+- (id)convertValueToStringIfNeeded:(id)value attributeMapping:(FKFormAttributeMapping *)attributeMapping;
+
+/**
+ Converts a string value from a text field to the correspondig object value type.
+ 
+ This method is called before setting a value in the model.
+ 
+ @see convertValueToStringIfNeeded:attributeMapping:
+ */
+- (id)convertValueToObjectPropertyTypeIfNeeded:(NSString*)value attributeMapping:(FKFormAttributeMapping *)attributeMapping;
+
+- (FKSimpleField *)cellWithAttributeMapping:(FKFormAttributeMapping *)attributeMapping sourceClass:(Class)sourceClass;
+
+- (id)cellForClass:(Class)cellClass;
 
 @end

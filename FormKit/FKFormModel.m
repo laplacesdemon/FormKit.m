@@ -394,7 +394,7 @@
         [weakRef reloadRowWithAttributeMapping:formAttributeMapping];
     };
     
-    NSString *value = [self.formMapper valueForAttributeMapping:attributeMapping];
+    id value = [self.formMapper valueForAttributeMapping:attributeMapping];
     NSInteger selectedIndex = 0;
     ActionSheetStringPicker *picker;
     picker = [ActionSheetStringPicker showPickerWithTitle:attributeMapping.title

@@ -35,33 +35,11 @@
 
 @property (nonatomic, strong) NSArray *sections;
 
-- (void)mapAttributeMapping:(FKFormAttributeMapping *)attributeMapping
-                      value:(id)value
-                  withField:(UITableViewCell *)field;
-
-- (FKSimpleField *)cellWithAttributeMapping:(FKFormAttributeMapping *)attributeMapping sourceClass:(Class)sourceClass;
-
 - (Class)classFromSourcePropertyAtIndexPath:(NSIndexPath *)indexPath keyPath:(NSString *)keyPath;
 
 - (void)splitFieldsIntoSections;
 
 - (NSString *)formattedStringDate:(NSDate *)date usingFormat:(NSString *)dateFormat;
-
-/**
- Converts an object property to a string that can be displayed in a label.
- */
-- (id)convertValueToStringIfNeeded:(id)value attributeMapping:(FKFormAttributeMapping *)attributeMapping;
-
-/**
- Converts a string value from a text field to the correspondig object value type.
- 
- This method is called before setting a value in the model.
- 
- @see convertValueToStringIfNeeded:attributeMapping:
- */
-- (id)convertValueToObjectPropertyTypeIfNeeded:(NSString*)value attributeMapping:(FKFormAttributeMapping *)attributeMapping;
-
-- (id)cellForClass:(Class)cellClass;
 
 @end
 
@@ -297,7 +275,6 @@
     } else if ([field isKindOfClass:[FKButtonField class]]) {
         field.textLabel.text = attributeMapping.title;
         field.accessoryType = attributeMapping.accesoryType;
-        
     } else {
         if (![convertedValue isKindOfClass:[NSString class]]) {
             convertedValue = [convertedValue description];
@@ -618,7 +595,8 @@
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)textViewDidEndEditing:(UITextView *)textView {
-    [self setValue:textView.text forAttributeMapping:textView.formAttributeMapping];
+    id value = [self convertValueToObjectPropertyTypeIfNeeded:textView.text attributeMapping:textView.formAttributeMapping];
+    [self setValue:value forAttributeMapping:textView.formAttributeMapping];
     [self.formModel reloadRowWithAttributeMapping:textView.formAttributeMapping];
 }
 
